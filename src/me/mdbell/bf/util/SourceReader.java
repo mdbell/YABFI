@@ -36,11 +36,12 @@ public class SourceReader implements Opcodes {
         visitor.visitStart();
         while (!source.isEmpty()) {
             char c = source.get();
+            OpcodeVisitor v = opcodes[c];
             if (opcodes[c] == null) {
-                continue;
+                v = DEFAULT_VISITOR;
             }
 
-            opcodes[c].visit(visitor, c);
+            v.visit(visitor, c);
         }
         visitor.visitEnd();
     }
