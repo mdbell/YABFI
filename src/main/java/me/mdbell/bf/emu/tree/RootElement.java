@@ -5,7 +5,8 @@ import me.mdbell.bf.emu.InterpreterContext;
 import me.mdbell.bf.emu.tree.elements.*;
 import me.mdbell.bf.emu.tree.elements.virtual.ZeroElement;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * @author matt123337
