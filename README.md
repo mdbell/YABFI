@@ -1,4 +1,5 @@
 # YABFI
+[![Build Status](https://travis-ci.org/mdbell/YABFI.svg?branch=master)](https://travis-ci.org/mdbell/YABFI)
 Yet Another Brainfuck Implementation
 
 ##Why?
