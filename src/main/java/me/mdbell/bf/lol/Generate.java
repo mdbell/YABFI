@@ -45,21 +45,33 @@ public class Generate {
 
         block.accept(counter);
 
-        System.out.println("Min number of pixels needed:" + counter.getCount());
+        int min = counter.getCount();
+
+        System.out.println("Min number of pixels needed:" + min);
 
         //compute rough image size
-        int height = (int) Math.ceil(Math.sqrt(counter.getCount()));
+        double scan = Math.ceil(Math.sqrt(min));
+        int height = (int) scan;
+
+        int width = (int) scan;
+
+        while(width * (height - 1) > min) {
+            height--;
+        }
 
         //The +2 is to account for the rotation on the left and right of each row
-        int width = height + 2;
+        width += 2;
 
         System.out.printf("Image size: %dx%d%n", width, height);
 
         BufferedImage img = new BufferedImage(width, height,BufferedImage.TYPE_BYTE_INDEXED);
         BrainlollerWriter writer = new BrainlollerWriter(img);
 
-        block.accept(writer);
-
+        try {
+            block.accept(writer);
+        }catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         ImageIO.write(img,"PNG", output.toFile());
     }
 }
